@@ -1,0 +1,216 @@
+/lib64/ld-linux-x86-64.so.2
+mgUa
+fgetc
+fgets
+setvbuf
+stdin
+puts
+__stack_chk_fail
+exit
+setbuf
+putchar
+strtol
+system
+stdout
+atoi
+__libc_start_main
+__cxa_finalize
+strchr
+printf
+fwrite
+strncmp
+libc.so.6
+GLIBC_2.4
+GLIBC_2.34
+GLIBC_2.2.5
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_ITM_registerTMCloneTable
+PTE1
+u+UH
+password
+you sent: %s
+expected %d
+maybe next time!
+expected %ld
+You sent: %s
+Maybe next time!
+Yay you connected!
+If you connected WITHOUT using pwntools, please exit and do that first!
+Lets see if you can strip out this address: {0x1337}
+Now send it back to me in decimal form!
+Now send it back to me in hex form MINUS 0x103!
+0x1234
+Now send me 0x1337 in little endian form!
+Lets see if you can strip out this little endian address (on the next line)
+Now send me it in hex form!
+0x12345678
+What is 12835 + 12835?
+Send me this address in decimal: 0xdeadbeef
+deadbeef
+Now send me these bytes as decimal: 
+What is the secret flag hidden in this file?
+Well done! You have successfully completed the basics!
+/bin/sh
+9*3$"
+GCC: (Ubuntu 13.2.0-23ubuntu4) 13.2.0
+getLong
+result
+_IO_FILE
+_IO_save_end
+short int
+size_t
+input
+_IO_write_ptr
+_flags
+password
+fgetc
+_IO_buf_base
+strncmp
+_markers
+_IO_read_end
+_freeres_buf
+getString
+setvbuf
+setbuf
+long long int
+stdin
+_lock
+fgets
+printf
+strtol
+_cur_column
+atoi
+argv
+exit
+_old_offset
+unsigned char
+argc
+strchr
+_IO_marker
+_shortbuf
+getDec
+_IO_write_base
+_unused2
+_IO_read_ptr
+_IO_buf_end
+main
+_freeres_list
+__pad5
+short unsigned int
+system
+fwrite
+long unsigned int
+_IO_write_end
+__off64_t
+_fileno
+_chain
+_IO_wide_data
+_mode
+__off_t
+_IO_backup_base
+GNU C99 13.2.0 -mtune=generic -march=x86-64 -ggdb -O0 -std=c99 -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection
+_flags2
+_IO_codecvt
+_IO_read_base
+target
+_vtable_offset
+_IO_save_base
+stdout
+_IO_lock_t
+intro.c
+/home/ubuntu/comp6447/2024/wargames/1/intro
+/usr/lib/gcc/x86_64-linux-gnu/13/include
+/usr/include/x86_64-linux-gnu/bits
+/usr/include/x86_64-linux-gnu/bits/types
+/usr/include
+stddef.h
+types.h
+struct_FILE.h
+stdio.h
+stdlib.h
+string.h
+Scrt1.o
+__abi_tag
+crtstuff.c
+deregister_tm_clones
+__do_global_dtors_aux
+completed.0
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+intro.c
+__FRAME_END__
+_DYNAMIC
+__GNU_EH_FRAME_HDR
+_GLOBAL_OFFSET_TABLE_
+getString
+putchar@GLIBC_2.2.5
+__libc_start_main@GLIBC_2.34
+strncmp@GLIBC_2.2.5
+_ITM_deregisterTMCloneTable
+stdout@GLIBC_2.2.5
+puts@GLIBC_2.2.5
+stdin@GLIBC_2.2.5
+getDec
+_edata
+_fini
+__stack_chk_fail@GLIBC_2.4
+setbuf@GLIBC_2.2.5
+system@GLIBC_2.2.5
+strchr@GLIBC_2.2.5
+printf@GLIBC_2.2.5
+fgetc@GLIBC_2.2.5
+password
+fgets@GLIBC_2.2.5
+__data_start
+getLong
+__gmon_start__
+strtol@GLIBC_2.2.5
+__dso_handle
+_IO_stdin_used
+_end
+__bss_start
+main
+setvbuf@GLIBC_2.2.5
+atoi@GLIBC_2.2.5
+exit@GLIBC_2.2.5
+fwrite@GLIBC_2.2.5
+__TMC_END__
+_ITM_registerTMCloneTable
+__cxa_finalize@GLIBC_2.2.5
+_init
+.symtab
+.strtab
+.shstrtab
+.interp
+.note.gnu.property
+.note.gnu.build-id
+.note.ABI-tag
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rela.dyn
+.rela.plt
+.init
+.plt.got
+.plt.sec
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.init_array
+.fini_array
+.dynamic
+.data
+.bss
+.comment
+.debug_aranges
+.debug_info
+.debug_abbrev
+.debug_line
+.debug_str
+.debug_line_str
