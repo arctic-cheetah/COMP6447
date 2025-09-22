@@ -12,6 +12,7 @@ _start:
     mov rdx, length
     syscall
 
+    # End program
     mov rax, 60
     mov rdi, 0
     syscall
