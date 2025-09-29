@@ -160,10 +160,11 @@ io.interactive()
 General overview of problems faced
 -------------------------------------
 
-* Need to read in from the binary output
+* Need to read in from the output
 * beware of reading input. It is bytes
-* Sending output in bytes
-* last passphrase is: password
+* Sending output in bytes.
+* ensure we add the numbers and just send the sum as ascii encoded then bytes
+
 FLAG:{FLAG{eyJhbGciOiJIUzI1NiJ9.eyJjaGFsIjoiMS10b28tc2xvdyIsImlwIjoiMTI5Ljk0LjEyOC4yNCIsInNlc3Npb24iOiIwZmU5NGVlYS0yZDZhLTRlZjItYmU2YS1kODQ1MDA2ZGRiY2IifQ.6HnHfHiRPn5XijcxOrioPqoSs6Atyf1DWI20GQwi5bU}}
 
 Script/Command used
