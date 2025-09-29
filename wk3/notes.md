@@ -29,11 +29,13 @@ contents is printed at $rbp-0x30
 Bad chars are 0xf,0x5! We cant use syscall!
 
 This means we have to use the opened fd
-file discriptor to read the contents of the flag!!
+file discriptor to read the contents of the flag!! From file descriptor
 
 Should the small shellcode look for the bigger shellcode? YES!
 
 Interesting, another file descriptor for the flag is opened @0x0040158c! Perhaps we must use this!
+
+flag size is 190 bytes
 
 SHellz:
 

