@@ -18,3 +18,5 @@ _start:
     mov rax, 60
     mov rdi, 0
     syscall
+
+    0x4B435546
