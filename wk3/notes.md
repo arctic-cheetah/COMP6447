@@ -37,6 +37,15 @@ Interesting, another file descriptor for the flag is opened @0x0040158c! Perhaps
 
 flag size is 190 bytes
 
+Big buffer is: location is at:
+b *main+1006
+
+# 0x7fb5dc353fda
+
+This is higher in memory! Than the smallbuff
+
+small buff has to be less than or equal to 28 bytes. Otherwise big shellcode is lost
+
 SHellz:
 
 └─$ checksec shellz
