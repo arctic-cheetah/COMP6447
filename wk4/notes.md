@@ -27,7 +27,9 @@ ooooo, there is a win function :D
     IBT:        Enabled
     Stripped:   No
 
-Cannot overrwrite the return address (SHSTK) so I need to perform GOT on printf
+Cannot overrwrite the return address (SHSTK) so I need to perform GOT on printf or puts?
+
+Most likely not work
 
 ┌──(pythonPackages)─(k-730㉿K730)-[~/COMP6447/wk4/formatrix]
 └─$ readelf -r formatrix | grep -i printf
@@ -61,6 +63,9 @@ overflow_arg_area (stack in the CALLER at call time):
   [rsp+16]= next 8-byte word in caller frame    ← %7$...
   [rsp+24]= next …                               ← %8$..
 
+rbp-0x200 => buf
+rbp-0x600 => s
+
 ## meme
 
  checksec meme
@@ -75,8 +80,7 @@ overflow_arg_area (stack in the CALLER at call time):
     Stripped:   No
 
 string to compare: 2tRiViAl
-Need to make sure 
-
+Need to make sure
 
 ## Tetris
 

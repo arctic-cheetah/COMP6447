@@ -142,13 +142,23 @@ signature = 0x90909090
 smallAsm = f"""
 mov rdi, {stck_addr}
 mov eax, {signature}
-small_loop:
-    add rdi, 1
+find:
+    inc rdi
     cmp dword ptr [rdi], eax
-    jne small_loop
-    add rdi, 0x4
+    jne find
     jmp rdi
 """
+
+# smallAsm = f"""
+# mov rdi, {stck_addr}
+# mov eax, {signature}
+# small_loop:
+#     add rdi, 1
+#     cmp dword ptr [rdi], eax
+#     jne small_loop
+#     add rdi, 0x4
+#     jmp rdi
+# """
 
 
 # bfc03190
